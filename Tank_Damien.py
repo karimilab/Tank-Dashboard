@@ -13,12 +13,6 @@ from io import BytesIO
 ModelF = importlib.import_module(f"neuralNetwork.ModelF")
 ModelZg = importlib.import_module(f"neuralNetwork.ModelZg")
 
-def get_class(component):
-    # this function allows the component class to be accessed
-    mymodule = importlib.import_module(f"molecules.{component}")
-    myclass = getattr(mymodule, component)
-    return myclass
-
 class Tank:
     def __init__(self, noFeedStreams, noProductStreams, tankDiameter, tankHeight, initialPressure, 
             initialLiquidHeight, feeds, products, feed_product_df,
@@ -245,15 +239,15 @@ class Tank:
             LD = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component_class = get_class(self.componentList[i])
+                    component = importlib.import_module("components.{self.componentList[i]}")
                     if len(T) > 1:
-                        E[j, i] = component_class.liq_enthalpy(np.atleast_2d(T[j]).T)[0]
-                        C[j, i] = component_class.liq_heat_capacity(np.atleast_2d(T[j]).T)[0]
-                        LD[j, i] = component_class.density(T[j][0])
+                        E[j, i] = component.liq_enthalpy(np.atleast_2d(T[j]).T)[0]
+                        C[j, i] = component.liq_heat_capacity(np.atleast_2d(T[j]).T)[0]
+                        LD[j, i] = component.density(T[j][0])
                     elif len(T) == 1:
-                        E[j, i] = component_class.liq_enthalpy([T])[0]
-                        C[j, i] = component_class.liq_heat_capacity([T])[0]
-                        LD[j, i] = component_class.density(T[j])
+                        E[j, i] = component.liq_enthalpy([T])[0]
+                        C[j, i] = component.liq_heat_capacity([T])[0]
+                        LD[j, i] = component.density(T[j])
             return E, C, LD
 
         def vap_prop(T):
@@ -261,21 +255,21 @@ class Tank:
             Ci = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component_class = get_class(self.componentList[i])
+                    component = importlib.import_module("components.{self.componentList[i]}")
                     if len(T) > 1:
-                        Ei[j, i] = component_class.vap_enthalpy(np.atleast_2d(T[j]).T)[0]
-                        Ci[j, i] = component_class.vap_heat_capacity(np.atleast_2d(T[j]).T)[0]
+                        Ei[j, i] = component.vap_enthalpy(np.atleast_2d(T[j]).T)[0]
+                        Ci[j, i] = component.vap_heat_capacity(np.atleast_2d(T[j]).T)[0]
                     elif len(T) == 1:
-                        Ei[j, i] = component_class.vap_enthalpy([T])[0]
-                        Ci[j, i] = component_class.vap_heat_capacity([T])[0]
+                        Ei[j, i] = component.vap_enthalpy([T])[0]
+                        Ci[j, i] = component.vap_heat_capacity([T])[0]
             return Ei, Ci
 
         def Vap_Pressure(T):
             P_s = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component_class = get_class(self.componentList[i])
-                    P_s[j, i] = component_class.vapor_pressure(T[j])
+                    component = importlib.import_module("components.{self.componentList[i]}")
+                    P_s[j, i] = component.vapor_pressure(T[j])
             return P_s
 
         ## Initial conditions in the tank
@@ -1080,23 +1074,23 @@ class Tank:
             LD = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component_class = get_class(self.componentList[i])
+                    component = importlib.import_module("components.{self.componentList[i]}")
                     if len(T) > 1:
-                        E[j, i] = component_class.liq_enthalpy(np.atleast_2d(T[j]).T)[0]
-                        C[j, i] = component_class.liq_heat_capacity(np.atleast_2d(T[j]).T)[0]
-                        LD[j, i] = component_class.density(T[j][0])
+                        E[j, i] = component.liq_enthalpy(np.atleast_2d(T[j]).T)[0]
+                        C[j, i] = component.liq_heat_capacity(np.atleast_2d(T[j]).T)[0]
+                        LD[j, i] = component.density(T[j][0])
                     elif len(T) == 1:
-                        E[j, i] = component_class.liq_enthalpy([T])[0]
-                        C[j, i] = component_class.liq_heat_capacity([T])[0]
-                        LD[j, i] = component_class.density(T[j])
+                        E[j, i] = component.liq_enthalpy([T])[0]
+                        C[j, i] = component.liq_heat_capacity([T])[0]
+                        LD[j, i] = component.density(T[j])
             return E, C, LD
 
         def Vap_Pressure(T):
             P_s = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component_class = get_class(self.componentList[i])
-                    P_s[j, i] = component_class.vapor_pressure(T[j])
+                    component = importlib.import_module("components.{self.componentList[i]}")
+                    P_s[j, i] = component.vapor_pressure(T[j])
             return P_s
 
         ## Results

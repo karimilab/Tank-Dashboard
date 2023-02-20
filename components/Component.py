@@ -1,57 +1,43 @@
-from abc import ABC, abstractmethod
+import numpy as np
 
-class Component(ABC):
+def vapor_pressure(T):
     """
-    Abstract base class for component. All user-defined components should inherit from this class
+    This function takes in a temperature value (in K) and returns the 
+    vapor pressure (in kPa) of the component
     """
-    @staticmethod
-    @abstractmethod
-    def vapor_pressure(T):
-        """
-        Takes in a temperature value and return the vapor pressure of the component
-        """
-        pass
+    return
 
-    @staticmethod
-    @abstractmethod
-    def density(T):
-        """
-        Takes in a temperature value and returns the liquid density of the component
-        """
-        pass
+def density(T):
+    """
+    This function takes in a temperature value (in K) and returns the 
+    density (in kg/m3) of the component
+    """
+    return 
 
-    @staticmethod
-    @abstractmethod
-    def liq_enthalpy(T):
-        """
-        Takes in an array of temperature values and return an array of liquid enthalpy values
-        """
-        pass
+def liq_enthalpy(T):
+    """
+    This function takes in a temperature value or array (in K) and returns the 
+    liquid phase enthalpy (in J/kg) of the component
+    """
+    return
 
-    @staticmethod
-    @abstractmethod
-    def vap_enthalpy(T):
-        """
-        Takes in an array of temperature values and return an array of vapor enthalpy values
-        """
-        pass
+def vap_enthalpy(T):
+    """
+    This function takes in a temperature value or array (in K) and returns the 
+    vapor phase enthalpy (in J/kg) of the component
+    """
+    return
 
-    @staticmethod
-    @abstractmethod
-    def liq_heat_capacity(T):
-        """
-        Takes in an array of temperature values and return an array of liquid specific heat capacity
-        of the component
-        """
-        pass
-    
-    @staticmethod
-    @abstractmethod
-    def vap_heat_capacity(T):
-        """
-        Takes in an array of temperature values and return an array of vapor specific heat capacity
-        of the component
-        """
-        pass
-    
+def liq_heat_capacity(T):
+    """
+    This function takes in a temperature value or array (in K) and returns the 
+    liquid phase heat capacity (in J/kg/K) of the component
+    """
+    return
 
+def vap_heat_capacity(T):
+    """
+    This function takes in a temperature value or array (in K) and returns the 
+    vapor phase heat capacity (in J/kg/K) of the component
+    """
+    return 

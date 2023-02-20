@@ -31,17 +31,19 @@ with st.form("my_form"):
             with open("temp\\ModelZg.py", "wb") as outfile:
                 outfile.write(uploaded_ModelZg_file.getbuffer())
         componentHeader = [f"Component {i+1}" for i in range(noComponents)]
-        tabs = st.tabs(componentHeader)
-        for i in range(len(tabs)):
-            with tabs[i]:
-                st.subheader(f"Input details for Component {i+1}")
-                componentName = st.selectbox("Name of component", list(molecule_dict.keys())+["Other"], key=f"componentName{i}")
-                if componentName != "Other":
-                    st.write("Input complete. No additional input required.")
-                    componentList[i] = componentName
-                    molecular_weights[i+1] = molecule_dict[componentName]
-                else:
-                    st.write("Please upload python file with functions")
+        for i in range(noComponents):
+            st.subheader(f"Component {i+1}")
+            componentName = st.selectbox("Name of component", list(molecule_dict.keys())+["Other"], key=f"componentName{i}")
+            if componentName != "Other":
+                st.write("Input complete. No additional input required.")
+                componentList[i] = componentName
+                molecular_weights[i+1] = molecule_dict[componentName]
+            else:
+                st.write("Please upload python file with functions")
+                uploaded_comp_file = st.file_uploader(f"Upload Component{i+1}.py here", type="py")
+                if uploaded_ModelZg_file is not None:
+                    with open(f"temp\\Component{i+1}.py", "wb") as outfile:
+                        outfile.write(uploaded_ModelZg_file.getbuffer())
 
 
     with tab2:
