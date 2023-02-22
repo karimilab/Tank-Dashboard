@@ -6,7 +6,8 @@ dependencies:
   - numpy
   - pandas
   - streamlit
-  - streamlit-ext
   - assimulo
   - matplotlib
   - scipy
+  - pip:
+    - streamlit-ext
