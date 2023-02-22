@@ -6,6 +6,6 @@ dependencies:
   - python
   - assimulo
   - pip
-  - streamlit
   - pip:
+    - streamlit
     - streamlit-ext
