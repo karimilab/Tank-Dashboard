@@ -5,3 +5,6 @@ channels:
 dependencies:
   - python
   - assimulo
+  - pip
+  - pip:
+    - streamlit-ext
