@@ -9,5 +9,6 @@ dependencies:
   - assimulo
   - matplotlib
   - scipy
+  - pip
   - pip:
     - streamlit-ext
