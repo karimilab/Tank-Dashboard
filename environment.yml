@@ -7,7 +7,6 @@ dependencies:
   - anaconda
   - numpy
   - pandas
-  - streamlit
   - assimulo
   - matplotlib
   - scipy
