@@ -8,7 +8,7 @@ import os
 
 st.set_page_config(page_title="Tank Dashboard", layout="centered")
 st.title("Tank Dashboard")
-tab1, tab2, tab3, tab4, tab5= st.tabs(["Components","Tank Design", "Heat Leak", "Solver Settings", "Results"])
+tab1, tab2, tab3, tab4, tab5, tab6= st.tabs(["Components","Initial Conditions", "Streams", "Heat Leak", "Solver Settings", "Results"])
 
 if not os.path.exists("temp"):
     os.makedirs("temp")
@@ -35,83 +35,30 @@ with st.form("my_form"):
             st.subheader(f"Component {i+1}")
             componentName = st.selectbox("Name of component", list(molecule_dict.keys())+["Other"], key=f"componentName{i}")
             if componentName != "Other":
-                st.write("Input complete. No additional input required.")
+                st.write("Input complete. No additional input required for this component.")
                 componentList[i] = componentName
                 molecular_weights[i+1] = molecule_dict[componentName]
             else:
                 st.write("Please upload python file with functions")
+                with open("components\\Component.py", "rb") as file:
+                    ste.download_button("Download template python file here", file, f"Component{i+1}.py")
                 uploaded_comp_file = st.file_uploader(f"Upload Component{i+1}.py here", type="py")
-                if uploaded_ModelZg_file is not None:
+                if uploaded_comp_file is not None:
                     with open(f"temp\\Component{i+1}.py", "wb") as outfile:
-                        outfile.write(uploaded_ModelZg_file.getbuffer())
-
+                        outfile.write(uploaded_comp_file.getbuffer())
 
     with tab2:
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns([1,2])
         with col1:
-            noFeedStreams = st.selectbox("Number of feed streams", range(1,6), index=2)
-        with col2:
-            noProductStreams = st.selectbox("Number of product streams", range(1,6), index=2)
-        st.write("Please input feed and product stream data by downloading the template and uploading the completed file.")
-        feedColumnNames = ["Time (min)", "Flow rate (kg/s)", "Temperature (K)", "Pressure (kPa)"] + [f"Mass Frac {i}" for i in range(1,noComponents+1)]
-        productColumnNames = ["Time (min)", "Flow rate (kg/s)"]
-
-        def write_input_file():
-            output = BytesIO()
-            writer = pd.ExcelWriter(output, engine='xlsxwriter', engine_kwargs={"options":{'in_memory': True}})
-            for i in range(1,noFeedStreams+1):
-                df = pd.DataFrame(columns=feedColumnNames)
-                df.to_excel(writer, sheet_name=f"Feed {i}",index=False)  
-            for i in range(1,noProductStreams+1):
-                df = pd.DataFrame(columns=productColumnNames)
-                df.to_excel(writer, sheet_name=f"Product {i}",index=False) 
-            writer.close()
-            return output
-
-        ste.download_button("Download template here", data=write_input_file(), file_name="feed_product_data.xlsx")
-        uploaded_input_file = st.file_uploader("Upload completed data here")
-        if uploaded_input_file is not None:
-            feed_product_df = pd.read_excel(uploaded_input_file,sheet_name=None)
-        
-        col1, col2, col3 = st.columns([1,2,1])
-        with col1:
-            for i in range(1,noFeedStreams+1):
-                st.header(f"Feed {i}")
-                st.image('Arrow.png')
-                feeds[i] = st.number_input("Height (%)", min_value=0.0, max_value=100.0, key=f"feed{i}", value=95.0)
-        with col2:
             initialPressure = st.number_input("Initial Pressure (kPa)", value=110.0)
             tankDiameter = st.number_input("Tank Diameter (m)", value=63.0)
             tankHeight = st.number_input("Tank Height (m)", value=63.0)
             initialLiquidHeight = st.number_input("Initial liquid height (%)", min_value=0.0, max_value=100.0, value=90.0)
-            st.image('tank.png')
+            st.subheader("Optional inputs")
             jacketStartValue = st.number_input("Jacket Start Point (%)", min_value=0.0, max_value=100.0)
             jacketEndValue = st.number_input("Jacket End Point (%)", min_value=0.0, max_value=100.0)
-        with col3:
-            for i in range(1,noProductStreams+1):
-                st.header(f"Product {i}")
-                st.image('Arrow.png')
-                products[i] = st.number_input("Height (%)", min_value=0.0, max_value=100.0, key=f"product{i}", value=100.0)
-
-    with tab3:
-        sigma = st.number_input("Evaporation/Condensation Coefficient ((kmol/kg)\u2070\u0387\u2075.s.m\u207b\u00b9):", format="%e", value=5e-09, min_value=0.0)
-        Ul = st.number_input("Liquid Phase Film Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.2f", value=200.0, min_value=0.0)
-        Uv = st.number_input("Vapour Phase Film Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.2f",value=10.0, min_value=0.0)
-        Uvw = st.number_input("Wall-Vapour Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
-        Ulw = st.number_input("Wall-Liquid Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
-        Ur = st.number_input("Tank Roof-Vapour Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.025, min_value=0.0)
-        Ub = st.number_input("Tank Bottom-Liquid Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.025, min_value=0.0)
-        Uvr = st.number_input("Jacket-Vapour Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
-        Ulr = st.number_input("Jacket-Liquid Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
-        groundTemp = st.number_input("Ground Temperature (K):",value=298.0, min_value=0.0)
-        ambTemp = st.number_input("Ambient Temperature (K):",value=298.0, min_value=0.0)
-        roofTemp = st.number_input("Roof Temperature (K):",value=298.0, min_value=0.0)
-        refridgeTemp = st.number_input("Refrigerant Temperature (K):",value=93.0, min_value=0.0)
-
-    with tab4:
-        abstol = st.number_input("Absolute DAE Solver Tolerance:",value=0.01, min_value=0.0, max_value=1.0)
-        reltol = st.number_input("Relative DAE Solver Tolerance:", format="%.4f",value=0.0001, min_value=0.0, max_value=1.0)
-        numberofIterations = st.number_input("Running Time (min):",value=40,step=5)
+        with col2:
+            st.image('tank.png')
         col1, col2 = st.columns(2)
         LDisks = {}
         Vdisks = {}
@@ -141,6 +88,65 @@ with st.form("my_form"):
         uploaded_initConditions_file = st.file_uploader("Upload Disk Initial Conditions here.")
         if uploaded_initConditions_file is not None:
             diskinitCombined = pd.read_excel(uploaded_initConditions_file)
+
+    with tab3:
+        col1, col2 = st.columns(2)
+        with col1:
+            noFeedStreams = st.selectbox("Number of feed streams", range(1,6), index=2)
+        with col2:
+            noProductStreams = st.selectbox("Number of product streams", range(1,6), index=2)
+        st.write("Please input feed and product stream data by downloading the template and uploading the completed file.")
+        feedColumnNames = ["Time (min)", "Flow rate (kg/s)", "Temperature (K)", "Pressure (kPa)"] + [f"Mass Frac {i}" for i in range(1,noComponents+1)]
+        productColumnNames = ["Time (min)", "Flow rate (kg/s)"]
+
+        def write_input_file():
+            output = BytesIO()
+            writer = pd.ExcelWriter(output, engine='xlsxwriter', engine_kwargs={"options":{'in_memory': True}})
+            for i in range(1,noFeedStreams+1):
+                df = pd.DataFrame(columns=feedColumnNames)
+                df.to_excel(writer, sheet_name=f"Feed {i}",index=False)  
+            for i in range(1,noProductStreams+1):
+                df = pd.DataFrame(columns=productColumnNames)
+                df.to_excel(writer, sheet_name=f"Product {i}",index=False) 
+            writer.close()
+            return output
+
+        ste.download_button("Download template here", data=write_input_file(), file_name="feed_product_data.xlsx")
+        uploaded_input_file = st.file_uploader("Upload completed data here")
+        if uploaded_input_file is not None:
+            feed_product_df = pd.read_excel(uploaded_input_file,sheet_name=None)
+        
+        col1, col2, col3 = st.columns([1,2,1])
+        with col1:
+            for i in range(1,noFeedStreams+1):
+                st.image('Arrow.png')
+                feeds[i] = st.number_input(f"Feed {i} Height (%)", min_value=0.0, max_value=100.0, key=f"feed{i}", value=95.0)
+        with col2:
+            st.image('tank.png')
+        with col3:
+            for i in range(1,noProductStreams+1):
+                st.image('Arrow.png')
+                products[i] = st.number_input(f"Product {i} Height (%)", min_value=0.0, max_value=100.0, key=f"product{i}", value=100.0)
+
+    with tab4:
+        sigma = st.number_input("Evaporation/Condensation Coefficient ((kmol/kg)\u2070\u0387\u2075.s.m\u207b\u00b9):", format="%e", value=5e-09, min_value=0.0)
+        Ul = st.number_input("Liquid Phase Film Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.2f", value=200.0, min_value=0.0)
+        Uv = st.number_input("Vapour Phase Film Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.2f",value=10.0, min_value=0.0)
+        Uvw = st.number_input("Wall-Vapour Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
+        Ulw = st.number_input("Wall-Liquid Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
+        Ur = st.number_input("Tank Roof-Vapour Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.025, min_value=0.0)
+        Ub = st.number_input("Tank Bottom-Liquid Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.025, min_value=0.0)
+        Uvr = st.number_input("Jacket-Vapour Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
+        Ulr = st.number_input("Jacket-Liquid Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.3f",value=0.02, min_value=0.0)
+        groundTemp = st.number_input("Ground Temperature (K):",value=298.0, min_value=0.0)
+        ambTemp = st.number_input("Ambient Temperature (K):",value=298.0, min_value=0.0)
+        roofTemp = st.number_input("Roof Temperature (K):",value=298.0, min_value=0.0)
+        refridgeTemp = st.number_input("Refrigerant Temperature (K):",value=93.0, min_value=0.0)
+
+    with tab5:
+        abstol = st.number_input("Absolute DAE Solver Tolerance:",value=0.01, min_value=0.0, max_value=1.0)
+        reltol = st.number_input("Relative DAE Solver Tolerance:", format="%.4f",value=0.0001, min_value=0.0, max_value=1.0)
+        numberofIterations = st.number_input("Running Time (min):",value=40,step=5)
     
     simulation_ran = st.form_submit_button('Run simulation')
 
@@ -170,7 +176,7 @@ with st.form("my_form"):
             st.session_state.submitted = True
             st.session_state.Tank = myTank
 
-    with tab5:
+    with tab6:
         if 'submitted' in st.session_state:
             myTank = st.session_state.Tank
             now = datetime.now()

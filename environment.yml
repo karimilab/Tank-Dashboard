@@ -3,12 +3,14 @@ channels:
   - anaconda
   - conda-forge
 dependencies:
+  - python
+  - anaconda
+  - pip
   - numpy
   - pandas
   - streamlit
   - assimulo
   - matplotlib
   - scipy
-  - pip
   - pip:
     - streamlit-ext
