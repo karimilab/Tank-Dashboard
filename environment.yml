@@ -5,12 +5,9 @@ channels:
 dependencies:
   - python
   - anaconda
-  - pip
   - numpy
   - pandas
   - streamlit
   - assimulo
   - matplotlib
   - scipy
-  - pip:
-    - -r requirements.txt
