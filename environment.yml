@@ -1,4 +1,7 @@
 name: tank
+channels:
+  - anaconda
+  - conda-forge
 dependencies:
   - numpy
   - pandas
