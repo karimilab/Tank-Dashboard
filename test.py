@@ -1,5 +1,5 @@
 import importlib
 import numpy as np
 
-component = importlib.import_module("components.Ethane")
+component = importlib.util.find_spec("components\\Ethane.py")
 print(component.liq_enthalpy(np.atleast_2d([100]))[0])

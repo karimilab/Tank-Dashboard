@@ -10,13 +10,10 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 from io import BytesIO
 
-ModelF = importlib.import_module(f"neuralNetwork.ModelF")
-ModelZg = importlib.import_module(f"neuralNetwork.ModelZg")
-
 class Tank:
     def __init__(self, noFeedStreams, noProductStreams, tankDiameter, tankHeight, initialPressure, 
             initialLiquidHeight, feeds, products, feed_product_df,
-            noComponents, molecular_weights, componentList,  
+            noComponents, molecular_weights, componentList, ModelF, ModelZg,
             jacketStartValue, jacketEndValue, sigma, Ul,
             Uv, Uvw, Ulw, Ur, Ub, Uvr, Ulr, groundTemp, ambTemp, roofTemp, refridgeTemp, 
             noLDisks, noVDisks, abstol, reltol, numberofIterations, diskinitCombined):
@@ -31,6 +28,8 @@ class Tank:
         self.products = products
         self.feed_product_df = feed_product_df
         self.noComponents = noComponents
+        self.ModelF = ModelF
+        self.ModelZg = ModelZg
         self.molecular_weights = molecular_weights
         self.componentList = componentList
         self.jacketStartValue = jacketStartValue
@@ -231,7 +230,8 @@ class Tank:
         Uvr = self.Uvr  # jacket-vapor heat transfer coefficient (W/m2 K)
         Ulr = self.Ulr  # jacket-liquid side heat transfer coefficient (W/m2 K)
         Tj = self.refridgeTemp  # refrigerant temperature (K)
-
+        ModelF = importlib.import_module(self.ModelF)
+        ModelZg = importlib.import_module(self.ModelZg)
 
         def liq_prop(T):
             E = np.zeros((len(T), I))
@@ -239,7 +239,7 @@ class Tank:
             LD = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component = importlib.import_module("components.{self.componentList[i]}")
+                    component = importlib.import_module(self.componentList[i])
                     if len(T) > 1:
                         E[j, i] = component.liq_enthalpy(np.atleast_2d(T[j]).T)[0]
                         C[j, i] = component.liq_heat_capacity(np.atleast_2d(T[j]).T)[0]
@@ -255,7 +255,7 @@ class Tank:
             Ci = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component = importlib.import_module("components.{self.componentList[i]}")
+                    component = importlib.import_module(self.componentList[i])
                     if len(T) > 1:
                         Ei[j, i] = component.vap_enthalpy(np.atleast_2d(T[j]).T)[0]
                         Ci[j, i] = component.vap_heat_capacity(np.atleast_2d(T[j]).T)[0]
@@ -268,7 +268,7 @@ class Tank:
             P_s = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component = importlib.import_module("components.{self.componentList[i]}")
+                    component = importlib.import_module(self.componentList[i])
                     P_s[j, i] = component.vapor_pressure(T[j])
             return P_s
 
@@ -1074,7 +1074,7 @@ class Tank:
             LD = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component = importlib.import_module("components.{self.componentList[i]}")
+                    component = importlib.import_module(self.componentList[i])
                     if len(T) > 1:
                         E[j, i] = component.liq_enthalpy(np.atleast_2d(T[j]).T)[0]
                         C[j, i] = component.liq_heat_capacity(np.atleast_2d(T[j]).T)[0]
@@ -1089,10 +1089,12 @@ class Tank:
             P_s = np.zeros((len(T), I))
             for j in range(len(T)):
                 for i in range(I):
-                    component = importlib.import_module("components.{self.componentList[i]}")
+                    component = importlib.import_module(self.componentList[i])
                     P_s[j, i] = component.vapor_pressure(T[j])
             return P_s
-
+        ModelF = importlib.import_module(self.ModelF)
+        ModelZg = importlib.import_module(self.ModelZg)
+        
         ## Results
         t = t / (24 * 3600)
         sy_m = len(y)

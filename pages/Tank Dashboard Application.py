@@ -26,17 +26,23 @@ with st.form("my_form"):
         if uploaded_ModelF_file is not None:
             with open("temp\\ModelF.py", "wb") as outfile:
                 outfile.write(uploaded_ModelF_file.getbuffer())
+            ModelF = "temp.ModelF"
+        else:
+            ModelF = "neuralNetwork.ModelF"
         uploaded_ModelZg_file = st.file_uploader("Upload ModelZg.py here", type="py")
         if uploaded_ModelZg_file is not None:
             with open("temp\\ModelZg.py", "wb") as outfile:
                 outfile.write(uploaded_ModelZg_file.getbuffer())
+            ModelZg = "temp.ModelZg"
+        else:
+            ModelF = "neuralNetwork.ModelZg"
         componentHeader = [f"Component {i+1}" for i in range(noComponents)]
         for i in range(noComponents):
             st.subheader(f"Component {i+1}")
             componentName = st.selectbox("Name of component", list(molecule_dict.keys())+["Other"], key=f"componentName{i}")
             if componentName != "Other":
                 st.write("Input complete. No additional input required for this component.")
-                componentList[i] = componentName
+                componentList[i] = f"components.{componentName}"
                 molecular_weights[i+1] = molecule_dict[componentName]
             else:
                 st.write("Please upload python file with functions")
@@ -46,6 +52,7 @@ with st.form("my_form"):
                 if uploaded_comp_file is not None:
                     with open(f"temp\\Component{i+1}.py", "wb") as outfile:
                         outfile.write(uploaded_comp_file.getbuffer())
+                componentList[i] = f"temp.Component{i+1}"
 
     with tab2:
         col1, col2 = st.columns([1,2])

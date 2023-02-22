@@ -13,4 +13,4 @@ dependencies:
   - matplotlib
   - scipy
   - pip:
-    - streamlit-ext
+    - -r requirements.txt
