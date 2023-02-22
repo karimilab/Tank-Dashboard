@@ -1,0 +1,9 @@
+name: tank
+dependencies:
+  - numpy
+  - pandas
+  - streamlit
+  - streamlit-ext
+  - assimulo
+  - matplotlib
+  - scipy
