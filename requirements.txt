@@ -2,4 +2,4 @@ numpy
 scipy
 matplotlib
 pandas
-streamli-ext
+streamlit-ext
