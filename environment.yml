@@ -4,6 +4,7 @@ channels:
   - conda-forge
 dependencies:
   - cython
+  - libgcc
   - pip
   - matplotlib
   - sundials
