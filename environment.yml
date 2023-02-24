@@ -1,12 +1,13 @@
 name: tank
 channels:
   - defaults
+  - anaconda
   - conda-forge
 dependencies:
   - cython
   - libgcc
   - pip
-  - matplotlib
+  - matplotlib==3.5.2
   - sundials
   - assimulo
   - pip:
