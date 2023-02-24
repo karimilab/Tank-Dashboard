@@ -4,10 +4,9 @@ channels:
   - conda-forge
 dependencies:
   - cython
-  - gcc
   - pip
-  - matplotlib
   - sundials
   - assimulo
   - pip:
     - streamlit-ext
+    - matplotlib
