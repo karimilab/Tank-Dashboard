@@ -1300,14 +1300,12 @@ class Tank:
         ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
         ax.minorticks_on()
         ax.set_xlim(xmin=0)
-        ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-        ax.set_ylabel('Pressure (kPa)', fontname="Arial", fontsize=14)
-        ax.set_title('Pressure Profile', fontname="Arial", fontsize=16)
+        ax.set_xlabel('Time (min)', fontsize=14)
+        ax.set_ylabel('Pressure (kPa)', fontsize=14)
+        ax.set_title('Pressure Profile', fontsize=16)
         for tick in ax.get_xticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         for tick in ax.get_yticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         return fig
     
@@ -1319,14 +1317,12 @@ class Tank:
 
         ax.minorticks_on()
         ax.set_xlim(xmin=0)
-        ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-        ax.set_ylabel('Liquid level (m)', fontname="Arial", fontsize=14)
-        ax.set_title('Liquid Level Profile', fontname="Arial", fontsize=16)
+        ax.set_xlabel('Time (min)', fontsize=14)
+        ax.set_ylabel('Liquid level (m)', fontsize=14)
+        ax.set_title('Liquid Level Profile', fontsize=16)
         for tick in ax.get_xticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         for tick in ax.get_yticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         return fig
 
@@ -1346,14 +1342,12 @@ class Tank:
         ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
         ax.minorticks_on()
         ax.set_xlim(xmin=0)
-        ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-        ax.set_ylabel('Temperature (K)', fontname="Arial", fontsize=14)
-        ax.set_title('Temperature Profiles', fontname="Arial", fontsize=16)
+        ax.set_xlabel('Time (min)', fontsize=14)
+        ax.set_ylabel('Temperature (K)', fontsize=14)
+        ax.set_title('Temperature Profiles', fontsize=16)
         for tick in ax.get_xticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         for tick in ax.get_yticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         return fig
 
@@ -1370,14 +1364,12 @@ class Tank:
 
         ax.minorticks_on()
         ax.set_xlim(xmin=0)
-        ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-        ax.set_ylabel('Rate (kg/s)', fontname="Arial", fontsize=14)
-        ax.set_title('Vapour Flows', fontname="Arial", fontsize=16)
+        ax.set_xlabel('Time (min)', fontsize=14)
+        ax.set_ylabel('Rate (kg/s)',fontsize=14)
+        ax.set_title('Vapour Flows', fontsize=16)
         for tick in ax.get_xticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         for tick in ax.get_yticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         return fig
 
@@ -1395,14 +1387,12 @@ class Tank:
 
         ax.minorticks_on()
         ax.set_xlim(xmin=0)
-        ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-        ax.set_ylabel('Component Mass Fraction', fontname="Arial", fontsize=14)
-        ax.set_title('Average Liquid Composition', fontname="Arial", fontsize=16)
+        ax.set_xlabel('Time (min)', fontsize=14)
+        ax.set_ylabel('Component Mass Fraction', fontsize=14)
+        ax.set_title('Average Liquid Composition', fontsize=16)
         for tick in ax.get_xticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         for tick in ax.get_yticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         return fig
 
@@ -1420,14 +1410,12 @@ class Tank:
 
         ax.minorticks_on()
         ax.set_xlim(xmin=0)
-        ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-        ax.set_ylabel('Component Mass Fraction', fontname="Arial", fontsize=14)
-        ax.set_title('Average Vapour Composition', fontname="Arial", fontsize=16)
+        ax.set_xlabel('Time (min)', fontsize=14)
+        ax.set_ylabel('Component Mass Fraction', fontsize=14)
+        ax.set_title('Average Vapour Composition', fontsize=16)
         for tick in ax.get_xticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         for tick in ax.get_yticklabels():
-            tick.set_fontname("Arial")
             tick.set_fontsize(12)
         return fig
 
@@ -1441,14 +1429,12 @@ class Tank:
             ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
             ax.minorticks_on()
             ax.set_xlim(xmin=0)
-            ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-            ax.set_ylabel('Temperature (K)', fontname="Arial", fontsize=14)
-            ax.set_title('Product Temperature', fontname="Arial", fontsize=16)
+            ax.set_xlabel('Time (min)', fontsize=14)
+            ax.set_ylabel('Temperature (K)', fontsize=14)
+            ax.set_title('Product Temperature', fontsize=16)
             for tick in ax.get_xticklabels():
-                tick.set_fontname("Arial")
                 tick.set_fontsize(12)
             for tick in ax.get_yticklabels():
-                tick.set_fontname("Arial")
                 tick.set_fontsize(12)
         return fig
 
@@ -1462,14 +1448,12 @@ class Tank:
             ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
             ax.minorticks_on()
             ax.set_xlim(xmin=0)
-            ax.set_xlabel('Time (min)', fontname="Arial", fontsize=14)
-            ax.set_ylabel('Pressure (kPa)', fontname="Arial", fontsize=14)
-            ax.set_title('Product Pressure', fontname="Arial", fontsize=16)
+            ax.set_xlabel('Time (min)', fontsize=14)
+            ax.set_ylabel('Pressure (kPa)', fontsize=14)
+            ax.set_title('Product Pressure', fontsize=16)
             for tick in ax.get_xticklabels():
-                tick.set_fontname("Arial")
                 tick.set_fontsize(12)
             for tick in ax.get_yticklabels():
-                tick.set_fontname("Arial")
                 tick.set_fontsize(12)
         return fig
     
