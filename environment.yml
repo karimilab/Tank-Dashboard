@@ -6,7 +6,6 @@ channels:
 dependencies:
   - cython
   - gcc
-  - libgcc
   - pip
   - matplotlib
   - sundials
