@@ -7,6 +7,6 @@ dependencies:
   - xlsxwriter
   - sundials
   - assimulo
-  - pip
-  - pip:
-    - matplotlib
+  - libgcc==5.2.0
+  - matplotlib
+
