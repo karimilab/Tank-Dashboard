@@ -5,6 +5,7 @@ channels:
 dependencies:
   - cython
   - pip
+  - matplotlib
   - sundials
   - assimulo
   - pip:
