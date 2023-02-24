@@ -1,7 +1,6 @@
 name: tank
 channels:
   - defaults
-  - anaconda
   - conda-forge
 dependencies:
   - cython
