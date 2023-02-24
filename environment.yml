@@ -8,6 +8,6 @@ dependencies:
   - sundials
   - assimulo
   - pip:
-    - streamlit
+    - streamlit==1.18.1
     - streamlit-ext
     - matplotlib
