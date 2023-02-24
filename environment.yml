@@ -5,9 +5,10 @@ channels:
   - conda-forge
 dependencies:
   - cython
+  - gcc
   - libgcc
   - pip
-  - matplotlib==3.5.2
+  - matplotlib
   - sundials
   - assimulo
   - pip:
