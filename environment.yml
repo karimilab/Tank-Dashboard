@@ -7,11 +7,10 @@ dependencies:
   - pandas
   - numpy
   - openpyxl
-  - sundials
+  - gxx_linux-64
   - assimulo
   - matplotlib
   - scipy
-  - gxx_linux-64
   - pip
   - pip:
     - streamlit-ext
