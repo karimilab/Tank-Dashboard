@@ -9,9 +9,9 @@ dependencies:
   - openpyxl
   - sundials
   - assimulo
+  - matplotlib
+  - scipy
   - pip
   - pip:
-    - matplotlib
-    - scipy
     - streamlit-ext
 
