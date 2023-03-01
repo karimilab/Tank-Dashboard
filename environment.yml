@@ -1,4 +1,4 @@
-name: tank
+name: base
 channels:
   - conda-forge
   - defaults
@@ -10,4 +10,3 @@ dependencies:
   - matplotlib
   - xlsxwriter
   - openpyxl
-prefix: C:\Users\65976\anaconda3\envs\tank
