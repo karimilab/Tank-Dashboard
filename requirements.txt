@@ -4,4 +4,4 @@ matplotlib
 pandas
 streamlit
 scipy
-Assimulo
+Cython
