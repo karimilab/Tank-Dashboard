@@ -5,3 +5,4 @@ pandas
 streamlit
 scipy
 Cython
+Assimulo
