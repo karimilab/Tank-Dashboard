@@ -1,13 +1,13 @@
-name: base
+name: tank
 channels:
   - conda-forge
   - defaults
 dependencies:
+  - python=3.9
+  - numpy
+  - pandas
   - assimulo
   - matplotlib
-  - matplotlib-base
-  - numpy
-  - openpyxl
-  - pandas
-  - scipy
   - xlsxwriter
+  - openpyxl
+prefix: C:\Users\65976\anaconda3\envs\tank
