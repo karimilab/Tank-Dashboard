@@ -1,7 +1,0 @@
-pip
-numpy
-matplotlib
-pandas
-streamlit
-scipy
-Cython
