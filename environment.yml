@@ -8,3 +8,5 @@ dependencies:
     - streamlit
     - scipy
     - matplotlib
+    - XlsxWriter
+    - openpyxl
