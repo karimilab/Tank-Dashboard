@@ -1,11 +1,4 @@
 name: base
 channels:
   - conda-forge
-dependencies:
-  - numpy
-  - scipy
-  - pandas
-  - assimulo
-  - matplotlib
-  - xlsxwriter
-  - openpyxl
+
