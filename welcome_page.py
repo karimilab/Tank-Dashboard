@@ -12,13 +12,3 @@ st.markdown(
     This is a dashboard tool for simulating a cylindrical tank for cryogenic energy fluid storage
 """
 )
-
-os.system("conda install numpy")
-# dependencies:
-#   - numpy
-#   - scipy
-#   - pandas
-#   - assimulo
-#   - matplotlib
-#   - xlsxwriter
-#   - openpyxl
