@@ -2,4 +2,6 @@ name: base
 channels:
   - conda-forge
 dependencies:
-  - streamlit
+  - pip
+  - pip:
+    - streamlit
