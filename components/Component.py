@@ -1,5 +1,9 @@
 import numpy as np
 
+"""
+This is a python file to define the properties of a component.
+Do not change the function names!
+"""
 def vapor_pressure(T):
     """
     This function takes in a temperature value (in K) and returns the 

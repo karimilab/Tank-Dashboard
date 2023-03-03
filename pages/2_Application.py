@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from Tank_Damien import Tank
+from Tank_v2 import Tank
 from datetime import datetime
 #import streamlit_ext as ste
 from io import BytesIO
@@ -67,11 +67,6 @@ with st.form("my_form"):
         with col2:
             st.image('tank.png')
         col1, col2 = st.columns(2)
-        LDisks = {}
-        Vdisks = {}
-        noLDisks = 5
-        noVDisks = 5
-        columnNames = ["Disk Number", "Temperature (K)"] + [f"Component {i}" for i in range(1,noComponents+1)]
         st.subheader("Disk Intital Conditions: Please download template and upload file")
         st.caption("Component columns are in terms of mol fraction")
         with col1:
@@ -80,6 +75,7 @@ with st.form("my_form"):
             noVDisks = st.number_input("Number of Vapour Disks:", value=5)
 
         def write_diskInit_file():
+            columnNames = ["Disk Number", "Temperature (K)"] + [f"Component {i}" for i in range(1,noComponents+1)]
             diskTable = pd.DataFrame(columns=columnNames, dtype=float)
             rows = [f"Liquid Disk {i}" for i in range(1,noLDisks+1)] + [f"Vapour Disk {i}" for i in range(1,noVDisks+1)]
             temps = [113.0 for _ in range(noLDisks+noVDisks)]
@@ -103,10 +99,10 @@ with st.form("my_form"):
         with col2:
             noProductStreams = st.selectbox("Number of product streams", range(1,6), index=2)
         st.write("Please input feed and product stream data by downloading the template and uploading the completed file.")
-        feedColumnNames = ["Time (min)", "Flow rate (kg/s)", "Temperature (K)", "Pressure (kPa)"] + [f"Mass Frac {i}" for i in range(1,noComponents+1)]
-        productColumnNames = ["Time (min)", "Flow rate (kg/s)"]
 
         def write_input_file():
+            feedColumnNames = ["Time (min)", "Flow rate (kg/s)", "Temperature (K)", "Pressure (kPa)"] + [f"Mass Frac {i}" for i in range(1,noComponents+1)]
+            productColumnNames = ["Time (min)", "Flow rate (kg/s)"]
             output = BytesIO()
             writer = pd.ExcelWriter(output, engine='xlsxwriter', engine_kwargs={"options":{'in_memory': True}})
             for i in range(1,noFeedStreams+1):
