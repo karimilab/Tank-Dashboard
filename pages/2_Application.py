@@ -46,7 +46,7 @@ with st.form("my_form"):
                 molecular_weights[i+1] = molecule_dict[componentName]
             else:
                 st.write("Please upload python file with functions")
-                with open("components\\Component.py", "rb") as file:
+                with open("..\\components\\Component.py", "rb") as file:
                     st.download_button("Download template python file here", file, f"Component{i+1}.py")
                 uploaded_comp_file = st.file_uploader(f"Upload Component{i+1}.py here", type="py")
                 if uploaded_comp_file is not None:
