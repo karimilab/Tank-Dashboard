@@ -14,15 +14,15 @@ with st.form("my_form"):
     feeds = {}
     products = {}
     molecular_weights = {}
-    molecule_dict = {'Ethane':16.0, 'Methane':30.0, 'Propane':44.1, 'Nitrogen':28.0, 'Hydrogen':2.0}
+    molecule_dict = {'Methane':16.0, 'Ethane':30.0, 'Propane':44.1, 'Nitrogen':28.0, 'Hydrogen':2.0}
 
     with tab1:
         noComponents = 4
         st.write("Number of components: **4**",)
         componentList = ["" for i in range(noComponents)]
-        st.write("Upload ModelF.py is uploaded here")
+        st.write("ModelF.py used is an ANN for the following components")
         ModelF = "neuralNetwork.ModelF"
-        st.write("Upload ModelZg.py is uploaded here")
+        st.write("ModelZg.py used returns 0.92 for all T and P")
         ModelZg = "neuralNetwork.ModelZg"
         componentHeader = [f"Component {i+1}" for i in range(noComponents)]
         for i in range(noComponents):
