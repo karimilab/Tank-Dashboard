@@ -5,7 +5,7 @@
 import numpy as np
 import pandas as pd
 
-def ANN(x):
+def ModelF(x):
 
     x = np.array(x)
     Q = len(x)
