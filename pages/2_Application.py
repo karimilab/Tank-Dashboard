@@ -17,7 +17,7 @@ with st.form("my_form"):
     feeds = {}
     products = {}
     molecular_weights = {}
-    molecule_dict = {'Ethane':16.0, 'Methane':30.0, 'Propane':44.1, 'Nitrogen':28.0, 'Hydrogen':2.0}
+    molecule_dict = {'Methane':16.0, 'Ethane':30.0, 'Propane':44.1, 'Nitrogen':28.0, 'Hydrogen':2.0}
 
     with tab1:
         noComponents = st.selectbox("Number of components", range(1,6), index=3)
