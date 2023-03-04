@@ -51,7 +51,7 @@ with st.form("my_form"):
         with col2:
             st.image('tank.png')
         col1, col2 = st.columns(2)
-        st.subheader("Disk Intital Conditions: **Please download template and upload file")
+        st.subheader("Disk Intital Conditions")
         st.caption("Component columns are in terms of mol fraction")
         with col1:
             noLDisks = 5
