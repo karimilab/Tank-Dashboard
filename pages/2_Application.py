@@ -49,6 +49,7 @@ with st.form("my_form"):
                 componentList[i] = f"components.{componentName}"
                 molecular_weights[i+1] = molecule_dict[componentName]
             else:
+                molecular_weights[i+1] = st.number_input("Molecular weight", min_value=0.0)
                 st.write("Please upload python file with functions")
                 with open("components/Component.py", "rb") as file:
                     st.download_button("Download template python file here", file, f"Component{i+1}.py")
