@@ -22,16 +22,20 @@ with st.form("my_form"):
     with tab1:
         noComponents = st.selectbox("Number of components", range(1,6), index=3)
         componentList = ["" for i in range(noComponents)]
+        with open("neuralNetwork/ModelF_template.py", "rb") as file:
+            st.download_button("Download template for ModelF.py here", file, f"ModelF.py")
         uploaded_ModelF_file = st.file_uploader("Upload ModelF.py here", type="py")
         if uploaded_ModelF_file is not None:
-            with open("temp\\ModelF.py", "wb") as outfile:
+            with open("temp/ModelF.py", "wb") as outfile:
                 outfile.write(uploaded_ModelF_file.getbuffer())
             ModelF = "temp.ModelF"
         else:
             ModelF = "neuralNetwork.ModelF"
+        with open("neuralNetwork/ModelZg_template.py", "rb") as file:
+            st.download_button("Download template for ModelZg.py here", file, f"ModelZg.py")
         uploaded_ModelZg_file = st.file_uploader("Upload ModelZg.py here", type="py")
         if uploaded_ModelZg_file is not None:
-            with open("temp\\ModelZg.py", "wb") as outfile:
+            with open("temp/ModelZg.py", "wb") as outfile:
                 outfile.write(uploaded_ModelZg_file.getbuffer())
             ModelZg = "temp.ModelZg"
         else:

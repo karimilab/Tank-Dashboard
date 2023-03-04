@@ -288,7 +288,7 @@ class Tank:
         AN3 = T0[N-1].tolist()
         AN = AN1 + AN2 + AN3
         AN = np.array(AN).reshape(1,-1)
-        Z1 = ModelZg.ans(AN)
+        Z1 = ModelZg.ModelZg(AN)
         Z = Z1[0][0]
         d0[NL:N, 0] = P0 / (Z * R * T0[N - 1]) / np.sum(x0[N - 1, :] / MW)
         W0 = np.zeros((I, N))
@@ -389,7 +389,7 @@ class Tank:
             P1[:] = self.Pg
             zf = np.transpose(x[:, NL:N])
             AN = np.concatenate((zf, P1, T[NL:N].reshape(-1,1)), axis=1)
-            BN = ModelZg.ans(AN)
+            BN = ModelZg.ModelZg(AN)
             BN = np.maximum(BN, 0)
             BN_list = BN.reshape(1, -1).tolist()[0]
             Z = np.zeros((N,1))
@@ -450,7 +450,7 @@ class Tank:
                 P_mf = P[mf_1]
                 Tf = Tf.reshape(-1, 1)
                 AN = np.concatenate((zf, Pf, P_mf, Tf), axis=1)
-                BN = np.maximum(ModelF.ANN(AN), 0)
+                BN = np.maximum(ModelF.ModelF(AN), 0)
                 T2 = BN[:, 0]
                 vf = np.minimum(BN[:, 1:], zf)
                 fv = vf * Ff
@@ -1138,7 +1138,7 @@ class Tank:
                         zf = x[sy, :, NL:N]  # 4 by 5 array
                         zf = np.transpose(zf)  # 5 by 4 array
                         AN = np.concatenate((zf, P1, T1), axis=1)
-                        BN = ModelZg.ans(AN)
+                        BN = ModelZg.ModelZg(AN)
                         BN = np.maximum(BN, 0)
                         BN_list = BN.reshape(1, -1).tolist()[0]
                         Z[sy, NL:N] = BN_list
@@ -1178,7 +1178,7 @@ class Tank:
             for i in range(sy_m):
                 P2[:, 0] = PV[i]
                 AN = np.concatenate((Fz[:, :, i], FP[i, :].reshape(-1, 1), P2, FT[i, :].reshape(-1, 1)), axis=1)
-                BN = np.maximum(ModelF.ANN(AN), 0)
+                BN = np.maximum(ModelF.ModelF(AN), 0)
                 T2 = BN[:, 0]
                 vf = np.minimum(BN[:, 1:], Fz[:, :, i])
                 fv = vf * Fi[i, 0]

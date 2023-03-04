@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def ans(x):
+def ModelZg(x):
     y1 = np.zeros((len(x), 1))
     for i in range(len(y1)):
         y1[i,0] = 0.92
