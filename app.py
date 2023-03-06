@@ -8,10 +8,28 @@ import os
 
 st.set_page_config(page_title="Tank Dashboard", layout="centered")
 st.title("Tank Dashboard")
-tab1, tab2, tab3, tab4, tab5, tab6= st.tabs(["Components","Initial Conditions", "Streams", "Heat Leak", "Solver Settings", "Results"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7= st.tabs(["Help","Components","Initial Conditions", "Streams", "Heat Leak", "Solver Settings", "Results"])
 
 if not os.path.exists("temp"):
     os.makedirs("temp")
+
+with tab1:
+    st.markdown(
+    """
+    # Welcome to Tank Dashboard app!
+    This is a dashboard tool for simulating a cylindrical tank for cryogenic energy fluid storage.\n
+
+    ## Instructions: \n
+    to do \n
+    # \n
+    # \n
+    # \n
+    # \n
+    Please cite the following work if you have found this application useful:
+    ___
+    """)
+    st.caption("© National University of Singapore")
+
 
 with st.form("my_form"):
     feeds = {}
@@ -19,7 +37,7 @@ with st.form("my_form"):
     molecular_weights = {}
     molecule_dict = {'Methane':16.0, 'Ethane':30.0, 'Propane':44.1, 'Nitrogen':28.0, 'Hydrogen':2.0}
 
-    with tab1:
+    with tab2:
         noComponents = st.selectbox("Number of components", range(1,6), index=3)
         componentList = ["" for i in range(noComponents)]
         col1, col2 = st.columns(2)
@@ -50,7 +68,7 @@ with st.form("my_form"):
         componentHeader = [f"Component {i+1}" for i in range(noComponents)]
         for i in range(noComponents):
             st.subheader(f"Component {i+1}")
-            componentName = st.selectbox("Name of component", list(molecule_dict.keys())+["Other"], key=f"componentName{i}")
+            componentName = st.selectbox("Name of component", list(molecule_dict.keys())+["Other"], key=f"componentName{i}",index=i)
             if componentName != "Other":
                 st.write("Input complete. No additional input required for this component.")
                 componentList[i] = f"components.{componentName}"
@@ -66,7 +84,7 @@ with st.form("my_form"):
                         outfile.write(uploaded_comp_file.getbuffer())
                 componentList[i] = f"temp.Component{i+1}"
 
-    with tab2:
+    with tab3:
         col1, col2 = st.columns([1,2])
         with col1:
             initialPressure = st.number_input("Initial Pressure (kPa)", value=110.0)
@@ -104,7 +122,7 @@ with st.form("my_form"):
         if uploaded_initConditions_file is not None:
             diskinitCombined = pd.read_excel(uploaded_initConditions_file)
 
-    with tab3:
+    with tab4:
         col1, col2 = st.columns(2)
         with col1:
             noFeedStreams = st.selectbox("Number of feed streams", range(1,6), index=2)
@@ -141,9 +159,9 @@ with st.form("my_form"):
         with col3:
             for i in range(1,noProductStreams+1):
                 st.image('Arrow.png')
-                products[i] = st.number_input(f"Product {i} Height (%)", min_value=0.0, max_value=100.0, key=f"product{i}", value=100.0)
+                products[i] = st.number_input(f"Product {i} Height (%)", min_value=0.0, max_value=100.0, key=f"product{i}", value=100.0 if i!=1 else 5.0)
 
-    with tab4:
+    with tab5:
         sigma = st.number_input("Evaporation/Condensation Coefficient ((kmol/kg)\u2070\u0387\u2075.s.m\u207b\u00b9):", format="%e", value=5e-09, min_value=0.0)
         Ul = st.number_input("Liquid Phase Film Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.2f", value=200.0, min_value=0.0)
         Uv = st.number_input("Vapour Phase Film Heat Transfer Coefficient (W/(m\u00b2.K)):", format="%.2f",value=10.0, min_value=0.0)
@@ -158,7 +176,7 @@ with st.form("my_form"):
         roofTemp = st.number_input("Roof Temperature (K):",value=298.0, min_value=0.0)
         refridgeTemp = st.number_input("Refrigerant Temperature (K):",value=93.0, min_value=0.0)
 
-    with tab5:
+    with tab6:
         abstol = st.number_input("Absolute DAE Solver Tolerance:",value=0.01, min_value=0.0, max_value=1.0)
         reltol = st.number_input("Relative DAE Solver Tolerance:", format="%.4f",value=0.0001, min_value=0.0, max_value=1.0)
         numberofIterations = st.number_input("Running Time (min):",value=40,step=5)
@@ -191,7 +209,7 @@ with st.form("my_form"):
             st.session_state.submitted = True
             st.session_state.Tank = myTank
 
-    with tab6:
+    with tab7:
         if 'submitted' in st.session_state:
             myTank = st.session_state.Tank
             now = datetime.now()
