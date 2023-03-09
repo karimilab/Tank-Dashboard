@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from Tank_v2 import Tank
 from datetime import datetime
-#import streamlit_ext as ste
+import streamlit_ext as ste
 from io import BytesIO
 import os
 
@@ -137,7 +137,7 @@ with tab2:
     col1, col2 = st.columns(2)
     with col1:
         with open("neuralNetwork/ModelF_template.py", "rb") as file:
-            st.download_button("Download template for ModelF.py here", file, f"ModelF.py")
+            ste.download_button("Download template for ModelF.py here", file, f"ModelF.py")
     with col2:
         uploaded_ModelF_file = st.file_uploader("Upload ModelF.py here", type="py")
     if uploaded_ModelF_file is not None:
@@ -150,7 +150,7 @@ with tab2:
     col1, col2 = st.columns(2)
     with col1:
         with open("neuralNetwork/ModelZg_template.py", "rb") as file:
-            st.download_button("Download template for ModelZg.py here", file, f"ModelZg.py")
+            ste.download_button("Download template for ModelZg.py here", file, f"ModelZg.py")
     with col2:
         uploaded_ModelZg_file = st.file_uploader("Upload ModelZg.py here", type="py")
     if uploaded_ModelZg_file is not None:
