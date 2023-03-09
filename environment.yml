@@ -3,10 +3,10 @@ channels:
   - conda-forge
 dependencies:
   - pip
-  - assimulo
   - pip:
     - streamlit
     - scipy
     - matplotlib
     - XlsxWriter
     - openpyxl
+    - streamlit-ext

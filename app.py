@@ -137,7 +137,7 @@ with tab2:
     col1, col2 = st.columns(2)
     with col1:
         with open("neuralNetwork/ModelF_template.py", "rb") as file:
-            ste.download_button("Download template for ModelF.py here", file, f"ModelF.py")
+            st.download_button("Download template for ModelF.py here", file, f"ModelF.py")
     with col2:
         uploaded_ModelF_file = st.file_uploader("Upload ModelF.py here", type="py")
     if uploaded_ModelF_file is not None:
@@ -150,7 +150,7 @@ with tab2:
     col1, col2 = st.columns(2)
     with col1:
         with open("neuralNetwork/ModelZg_template.py", "rb") as file:
-            ste.download_button("Download template for ModelZg.py here", file, f"ModelZg.py")
+            st.download_button("Download template for ModelZg.py here", file, f"ModelZg.py")
     with col2:
         uploaded_ModelZg_file = st.file_uploader("Upload ModelZg.py here", type="py")
     if uploaded_ModelZg_file is not None:
@@ -171,7 +171,7 @@ with tab2:
             molecular_weights[i+1] = st.number_input("Molecular weight", min_value=0.0, key=f"mw{i+1}")
             st.write("Please upload python file with functions")
             with open("components/Component.py", "rb") as file:
-                ste.download_button("Download template python file here", file, f"Component{i+1}.py")
+                st.download_button("Download template python file here", file, f"Component{i+1}.py")
             uploaded_comp_file = st.file_uploader(f"Upload Component{i+1}.py here", type="py")
             if uploaded_comp_file is not None:
                 with open(f"temp/Component{i+1}.py", "wb") as outfile:
@@ -238,7 +238,7 @@ with tab4:
         writer.close()
         return output
 
-    ste.download_button("Download template here", data=write_input_file(), file_name="feed_product_data.xlsx")
+    st.download_button("Download template here", data=write_input_file(), file_name="feed_product_data.xlsx")
     uploaded_input_file = st.file_uploader("Upload completed data here")
     if uploaded_input_file is not None:
         feed_product_df = pd.read_excel(uploaded_input_file,sheet_name=None)
