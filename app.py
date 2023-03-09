@@ -171,7 +171,7 @@ with tab2:
             molecular_weights[i+1] = st.number_input("Molecular weight", min_value=0.0, key=f"mw{i+1}")
             st.write("Please upload python file with functions")
             with open("components/Component.py", "rb") as file:
-                st.download_button("Download template python file here", file, f"Component{i+1}.py")
+                ste.download_button("Download template python file here", file, f"Component{i+1}.py")
             uploaded_comp_file = st.file_uploader(f"Upload Component{i+1}.py here", type="py")
             if uploaded_comp_file is not None:
                 with open(f"temp/Component{i+1}.py", "wb") as outfile:
@@ -210,7 +210,7 @@ with tab3:
         diskTable.to_excel(writer, index=False)
         writer.close()
         return output
-    st.download_button("Download template here", data=write_diskInit_file(), file_name="Disk Initial Conditions.xlsx")
+    ste.download_button("Download template here", data=write_diskInit_file(), file_name="Disk Initial Conditions.xlsx")
 
     uploaded_initConditions_file = st.file_uploader("Upload Disk Initial Conditions here.")
     if uploaded_initConditions_file is not None:
@@ -238,7 +238,7 @@ with tab4:
         writer.close()
         return output
 
-    st.download_button("Download template here", data=write_input_file(), file_name="feed_product_data.xlsx")
+    ste.download_button("Download template here", data=write_input_file(), file_name="feed_product_data.xlsx")
     uploaded_input_file = st.file_uploader("Upload completed data here")
     if uploaded_input_file is not None:
         feed_product_df = pd.read_excel(uploaded_input_file,sheet_name=None)
@@ -309,7 +309,7 @@ with tab6:
             now = datetime.now()
             current_time = now.strftime("%d-%m-%Y %H%M")
             nameResultsExcel = f"Results {current_time}.xlsx"
-            st.download_button("Download Results here", data=myTank.save_results(), file_name=nameResultsExcel)
+            ste.download_button("Download Results here", data=myTank.save_results(), file_name=nameResultsExcel)
             tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["Pressure", "Liquid Level", 
                 "Temperature", "Vapor Flows", "Liquid Comp", "Vapor Comp", "Product Temp", "Product Pressure"])
             
@@ -319,53 +319,53 @@ with tab6:
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Pressure.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Pressure.png",mime="image/png")
             with tab2:
                 fig = myTank.plot_liquid_level()
                 st.pyplot(fig)
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Liquid Level.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Liquid Level.png",mime="image/png")
             with tab3:
                 fig = myTank.plot_temperature()
                 st.pyplot(fig)
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Temperature Profiles.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Temperature Profiles.png",mime="image/png")
             with tab4:
                 fig = myTank.plot_vapor_flows()
                 st.pyplot(fig)
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Vapor Flows.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Vapor Flows.png",mime="image/png")
             with tab5:
                 fig = myTank.plot_liquid_compositions()
                 st.pyplot(fig)
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Liquid Compositions.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Liquid Compositions.png",mime="image/png")
             with tab6:
                 fig = myTank.plot_vapor_compositions()
                 st.pyplot(fig)
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Vapor Compositions.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Vapor Compositions.png",mime="image/png")
             with tab7:
                 fig = myTank.plot_product_temperature()
                 st.pyplot(fig)
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Product Temperature.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Product Temperature.png",mime="image/png")
             with tab8:
                 fig = myTank.plot_product_pressure()
                 st.pyplot(fig)
                 buf = BytesIO()
                 fig.savefig(buf, format='png', dpi=500, bbox_inches="tight")
                 byte_im = buf.getvalue()
-                st.download_button("Download Figure here", data=byte_im, file_name="Product Pressure.png",mime="image/png")
+                ste.download_button("Download Figure here", data=byte_im, file_name="Product Pressure.png",mime="image/png")
