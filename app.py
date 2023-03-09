@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from Tank_v2 import Tank
 from datetime import datetime
-import streamlit_ext as ste
+#import streamlit_ext as ste
 from io import BytesIO
 import os
 
