@@ -7,7 +7,11 @@ from io import BytesIO
 import os
 
 st.set_page_config(page_title="Tank Dashboard", layout="centered")
-st.title("Tank Dashboard")
+col1,col2 = st.columns([1,1])
+with col1:
+    st.title("Tank Dashboard")
+with col2:
+    st.image("nus-logo.jpg",width=200)
 tab1, tab2, tab3, tab4, tab5, tab6, tab7= st.tabs(["Help","Components","Initial Conditions", "Streams", "Heat Leak", "Solver Settings", "Results"])
 
 if not os.path.exists("temp"):
