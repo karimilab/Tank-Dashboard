@@ -4,7 +4,6 @@ channels:
 dependencies:
   - pip
   - numpy
-  - assimulo
   - pip:
     - streamlit
     - scipy
@@ -12,3 +11,4 @@ dependencies:
     - XlsxWriter
     - openpyxl
     - streamlit-ext
+  - assimulo
