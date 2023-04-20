@@ -6,7 +6,6 @@ dependencies:
   - numpy
   - assimulo
   - pip:
-    - streamlit
     - scipy
     - matplotlib
     - XlsxWriter
