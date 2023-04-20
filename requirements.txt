@@ -4,4 +4,3 @@ matplotlib
 numpy
 pandas
 streamlit-ext
-git+https://github.com/modelon-community/Assimulo@Assimulo-3.0
