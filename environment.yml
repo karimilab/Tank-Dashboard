@@ -11,4 +11,3 @@ dependencies:
     - XlsxWriter
     - openpyxl
     - streamlit-ext
-  - assimulo
