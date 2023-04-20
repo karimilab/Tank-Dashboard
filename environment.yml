@@ -4,7 +4,6 @@ channels:
 dependencies:
   - pip
   - streamlit
-  - assimulo
   - pip:
     - scipy
     - matplotlib
