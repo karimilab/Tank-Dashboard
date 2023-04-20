@@ -3,7 +3,8 @@ channels:
   - conda-forge
 dependencies:
   - pip
-  - numpy
+  - streamlit
+  - assimulo
   - pip:
     - scipy
     - matplotlib
