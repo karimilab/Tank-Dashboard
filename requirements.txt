@@ -5,3 +5,4 @@ numpy
 pandas
 streamlit-ext
 Cython
+git+https://github.com/modelon-community/Assimulo@Assimulo-3.0
