@@ -5,4 +5,4 @@ numpy
 pandas
 streamlit-ext
 Cython
-assimulo
+Assimulo
