@@ -1,8 +1,0 @@
-streamlit
-scipy
-matplotlib
-numpy
-pandas
-streamlit-ext
-Cython
-python-sundials
