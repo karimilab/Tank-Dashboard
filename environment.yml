@@ -1,8 +1,9 @@
 name: base
 channels:
-  - conda-forge
+  - mutirri
 dependencies:
   - pip
+  - assimulo
   - pip:
     - streamlit
     - scipy
