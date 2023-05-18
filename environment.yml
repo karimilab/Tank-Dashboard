@@ -1,6 +1,6 @@
 name: base
 channels:
-  - https://conda.binstar.org/chria
+  - chria
 dependencies:
   - pip
   - assimulo
