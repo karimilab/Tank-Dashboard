@@ -3,8 +3,9 @@ channels:
   - conda-forge
 dependencies:
   - pip
-  - assimulo
+  - assimulo-3.3-py39h5ec1a66_0.tar.bz2
   - pip:
+    - streamlit
     - scipy
     - matplotlib
     - XlsxWriter
