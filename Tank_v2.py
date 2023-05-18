@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 from scipy.stats import poisson
 import importlib
-from Assimulo.problem import Implicit_Problem
-from Assimulo.solvers import IDA
+from assimulo.problem import Implicit_Problem
+from assimulo.solvers import IDA
 from datetime import datetime
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
