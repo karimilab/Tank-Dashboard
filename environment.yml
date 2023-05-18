@@ -1,6 +1,6 @@
 name: base
 channels:
-  - mutirri
+  - conda-forge
 dependencies:
   - pip
   - assimulo
