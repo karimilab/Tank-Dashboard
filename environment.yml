@@ -11,3 +11,4 @@ dependencies:
     - XlsxWriter
     - openpyxl
     - streamlit-ext
+    - Assimulo-3.3-py39-none-any.whl
