@@ -4,4 +4,5 @@ scipy
 matplotlib
 pandas
 streamlit-ext
+Cython==0.18
 Assimulo
