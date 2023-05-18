@@ -1,9 +1,9 @@
 name: base
 channels:
-  - conda-forge
+  - https://conda.binstar.org/chria
 dependencies:
   - pip
-  - assimulo-3.3-py39h5ec1a66_0.tar.bz2
+  - assimulo
   - pip:
     - streamlit
     - scipy
