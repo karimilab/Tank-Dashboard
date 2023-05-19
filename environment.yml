@@ -4,3 +4,6 @@ channels:
 dependencies:
   - assimulo
   - pip
+  - pip:
+    - Xlsxwriter
+    - openpyxl
