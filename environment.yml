@@ -3,3 +3,10 @@ channels:
   - conda-forge
 dependencies:
   - assimulo
+  - pip:
+    streamlit
+    numpy
+    scipy
+    matplotlib
+    pandas
+    streamlit-ext
