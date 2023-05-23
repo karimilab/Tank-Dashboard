@@ -10,4 +10,6 @@ dependencies:
     - matplotlib
     - pandas
     - streamlit-ext
+    - xlsxwriter
+    - openpyxl
   - assimulo
