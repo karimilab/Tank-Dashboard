@@ -10,3 +10,4 @@ dependencies:
     - matplotlib
     - pandas
     - streamlit-ext
+  - assimulo
