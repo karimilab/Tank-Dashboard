@@ -2,4 +2,4 @@ name: base
 # channels:
 #   - conda-forge
 dependencies:
-  - conda-forge::https://anaconda.org/conda-forge/assimulo/3.3/download/win-64/assimulo-3.3-py39h9c45adc_1.tar.bz2
+  - conda-forge::assimulo
