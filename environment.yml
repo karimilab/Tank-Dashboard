@@ -2,14 +2,4 @@ name: base
 channels:
   - conda-forge
 dependencies:
-  - pip
   - assimulo
-  - pip:
-    - streamlit
-    - numpy
-    - scipy
-    - matplotlib
-    - pandas
-    - streamlit-ext
-    - xlsxwriter
-    - openpyxl
