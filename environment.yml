@@ -1,8 +1,9 @@
 name: base
 channels:
-  - conda-forge
+  - chria
 dependencies:
   - pip
+  - assimulo
   - pip:
     - streamlit
     - numpy
