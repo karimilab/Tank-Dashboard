@@ -2,6 +2,7 @@ name: base
 channels:
   - conda-forge
 dependencies:
+  - assimulo
   - pip
   - pip:
     - streamlit
@@ -12,4 +13,3 @@ dependencies:
     - streamlit-ext
     - xlsxwriter
     - openpyxl
-  - assimulo
