@@ -2,4 +2,4 @@ name: base
 channels:
   - conda-forge
 dependencies:
-  - assimulo
+  - assimulo==3.3
