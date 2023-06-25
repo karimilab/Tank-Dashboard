@@ -1,0 +1,15 @@
+name: base
+# channels:
+#   - conda-forge
+dependencies:
+  - conda-forge::assimulo
+  - pip
+  - pip:
+    - streamlit
+    - numpy
+    - scipy
+    - matplotlib
+    - pandas
+    - streamlit-ext
+    - openpyxl
+    - Xlsxwriter
