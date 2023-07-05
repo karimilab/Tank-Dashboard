@@ -2,7 +2,7 @@ name: base
 # channels:
 #   - conda-forge
 dependencies:
-  #- conda-forge::assimulo
+  - conda-forge::assimulo
   - pip
   - pip:
     - streamlit
