@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from scipy.stats import poisson
 import importlib
-from assimulo.problem import Implicit_Problem
+#from assimulo import Implicit_Problem
 from assimulo.solvers import IDA
 from datetime import datetime
 import matplotlib.pyplot as plt
