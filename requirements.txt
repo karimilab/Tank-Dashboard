@@ -3,4 +3,7 @@ numpy
 scipy
 matplotlib
 pandas
+xlsxwriter
+openpyxl
 streamlit-ext
+Cython
