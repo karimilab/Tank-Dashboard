@@ -824,7 +824,7 @@ class Ui_MainWindow(QMainWindow):
             "QPushButton#exportGraphsbutton::hover{background-color: rgb(0, 0, 255); color: rgb(255, 255, 255); border: 2px solid black; border-radius: 5px}")
         self.exportGraphsbutton.clicked.connect(self.resultsGraph)
 
-        self.defaultfun()
+        # self.defaultfun()
 
     def defaultfun(self):
         self.design_df = pd.read_excel('Base Case.xlsx', sheet_name='Design', header=None)
@@ -3003,27 +3003,27 @@ class Ui_MainWindow(QMainWindow):
                     I = int(self.noComponentstext.currentText())
                     if nodisks > 0:
                         arrangedName = ['Component {}'.format(str(i+1)) for i in range(I)]
-                        T0 = pd.read_excel("Initial condition.xlsx", "Data", usecols="A").values.tolist()
-                        T0 = np.array(T0)
-                        init_DF = pd.read_excel("Initial condition.xlsx", "Data")
-                        x0 = np.zeros((len(T0), I))
-                        for i in range(I):
-                            x0[:, i] = init_DF[arrangedName[i]].values.tolist()
-                        self.diskinitCombined = np.concatenate((T0, x0), axis=1)
+                        # T0 = pd.read_excel("base_disk_initial_conditions.xlsx", usecols="A").values.tolist()
+                        # T0 = np.array(T0)
+                        # init_DF = pd.read_excel("base_disk_initial_conditions.xlsx", "Data")
+                        # x0 = np.zeros((len(T0), I))
+                        # for i in range(I):
+                        #     x0[:, i] = init_DF[arrangedName[i]].values.tolist()
+                        # self.diskinitCombined = np.concatenate((T0, x0), axis=1)
 
-                        extra_rows = nodisks - self.diskinitCombined.shape[0]
+                        # extra_rows = nodisks - self.diskinitCombined.shape[0]
 
-                        if extra_rows > 0:
-                            empty_array = np.zeros((extra_rows, self.diskinitCombined.shape[1]))
-                            self.diskinitCombined = np.concatenate((self.diskinitCombined, empty_array), axis=0)
+                        # if extra_rows > 0:
+                        #     empty_array = np.zeros((extra_rows, self.diskinitCombined.shape[1]))
+                        #     self.diskinitCombined = np.concatenate((self.diskinitCombined, empty_array), axis=0)
 
-                        length = 270 + 100 * (int(self.noComponentstext.currentText()))
-                        height = (nodisks+2) * 40
+                        # length = 270 + 100 * (int(self.noComponentstext.currentText()))
+                        # height = (nodisks+2) * 40
 
-                        if height > 600:
-                            height = 600
+                        # if height > 600:
+                        #     height = 600
 
-                        self.diskTable.setGeometry(np.round((1000-length)/2), 250, length, height)
+                        # self.diskTable.setGeometry(np.round((1000-length)/2), 250, length, height)
                         self.diskTable.setColumnCount(int(self.noComponentstext.currentText()) + 2)
                         self.diskTable.setRowCount(nodisks+2)
                         self.diskTable.horizontalHeader().setDefaultSectionSize(100)
